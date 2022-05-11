@@ -1,4 +1,3 @@
-// <button id="button">Save</button>
 const prefix = "ferhado-storage-prefix";
 const sourceObject = JSON.parse(sessionStorage.getItem(prefix) || '{}');
 
@@ -27,9 +26,3 @@ const handler = {
 }
 
 const storage = new Proxy(sourceObject, handler);
-
-button.addEventListener('click', function() {
-  if (!storage.name) storage.name = {};
-  if (!storage.name.counter) storage.name.counter = 0;
-  storage.name.counter++;
-})
