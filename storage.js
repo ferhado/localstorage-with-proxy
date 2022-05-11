@@ -1,5 +1,5 @@
 const prefix = "ferhado-storage-prefix";
-const sourceObject = JSON.parse(sessionStorage.getItem(prefix) || '{}');
+const sourceObject = JSON.parse(localStorage.getItem(prefix) || '{}');
 
 const handler = {
   get(target, property, receiver) {
@@ -12,14 +12,14 @@ const handler = {
 
   defineProperty(target, property, descriptor) {
     if (Reflect.defineProperty(target, property, descriptor)) {
-      sessionStorage.setItem(prefix, JSON.stringify(sourceObject));
+      localStorage.setItem(prefix, JSON.stringify(sourceObject));
     }
     return true;
   },
 
   deleteProperty(target, property) {
     if (Reflect.deleteProperty(target, property)) {
-      sessionStorage.setItem(prefix, JSON.stringify(sourceObject));
+      localStorage.setItem(prefix, JSON.stringify(sourceObject));
     }
     return true;
   }
